@@ -6,8 +6,8 @@
 # CLOUDFLARE_EMAIL=''
 # CLOUDFLARE_GLOBAL_API_KEY=''
 
-
-NEW_IP=`nslookup myip.opendns.com resolver1.opendns.com | awk '/Address/ { print $2 }' | tail -1`
+# Use 208.67.222.222 instead of resolver1.opendns.com to prevent nslookup goes with ipv6
+NEW_IP=`nslookup myip.opendns.com 208.67.222.222 | awk '/Address/ { print $2 }' | tail -1`
 CURRENT_IP=`nslookup $MY_DOMAIN | awk '/Address/ { print $2 }' | tail -1`
 
 if [ "$NEW_IP" = "$CURRENT_IP" ]
