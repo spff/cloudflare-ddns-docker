@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  updater:
+    build: .
+    restart: always
+    environment:
+      - MY_DOMAIN=${MY_DOMAIN}
+      - CLOUDFLARE_RECORD_ID=${CLOUDFLARE_RECORD_ID}
+      - CLOUDFLARE_EMAIL=${CLOUDFLARE_EMAIL}
+      - CLOUDFLARE_GLOBAL_API_KEY=${CLOUDFLARE_GLOBAL_API_KEY}
+      
+    healthcheck:
+      test: ["CMD", "/update_record.sh"]
+      interval: 240s
+      timeout: 10s
+      retries: 3

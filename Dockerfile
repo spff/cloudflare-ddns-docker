@@ -1,5 +1,12 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
-RUN apk add --no-cache curl
+COPY update_record.sh /update_record.sh
+COPY blocker.sh /blocker.sh
+RUN apk add --no-cache curl &&\
+ chmod 755 /update_record.sh &&\
+ chmod 755 /blocker.sh
 
-ENTRYPOINT ["/usr/bin/curl"]
+# http://mywiki.wooledge.org/SignalTrap#When_is_the_signal_handled.3F
+CMD ["/blocker.sh"]
+
+
