@@ -1,14 +1,14 @@
 #!/bin/sh
 
-# MY_DOMAIN='ms.exlent.io'
-# CLOUDFLARE_RECORD_ID='123'
-# CLOUDFLARE_ZONE_ID=''
-# CLOUDFLARE_EMAIL=''
-# CLOUDFLARE_GLOBAL_API_KEY=''
+# MY_DOMAIN="ms.exlent.io"
+# CLOUDFLARE_RECORD_ID="123"
+# CLOUDFLARE_ZONE_ID=""
+# CLOUDFLARE_EMAIL=""
+# CLOUDFLARE_GLOBAL_API_KEY=""
 
 # Use 208.67.222.222 instead of resolver1.opendns.com to prevent nslookup goes with ipv6
 NEW_IP=`nslookup myip.opendns.com 208.67.222.222 | awk '/Address/ { print $2 }' | tail -1`
-CURRENT_IP=`echo $MY_DOMAIN |xargs nslookup | awk '/Address/ { print $2 }' | tail -1`
+CURRENT_IP=`nslookup $MY_DOMAIN | awk '/Address/ { print $2 }' | tail -1`
 
 if [ "$NEW_IP" = "$CURRENT_IP" ]
 then
