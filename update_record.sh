@@ -18,6 +18,6 @@ curl -X PUT "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/dns_
      -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
      -H "X-Auth-Key: $CLOUDFLARE_GLOBAL_API_KEY" \
      -H "Content-Type: application/json" \
-     --data '{"type":"A","name":"'$MY_DOMAIN'","content":"'$NEW_IP'","ttl":120,"proxied":false}' > /dev/null
+     --data '{"type":"A","name":"$MY_DOMAIN","content":"$NEW_IP","ttl":120,"proxied":false}' > /dev/null
 echo $NEW_IP >> /tmp/ip_history.txt
 fi
